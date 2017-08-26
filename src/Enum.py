@@ -4,36 +4,43 @@ import EvalShift as eva
 
 """
 Define Employee
-e0:朝だけ
-e1:月・水・金
-e2:週末だけ
-e3:どこでもOK
-e4:夜だけ
-e5:平日のみ
-e6:金土日
-e7:昼のみ
-e8:夜のみ
-e9:木金土日
 """
-e0 = emp.Employee(0, "山田", 40, False, ['mon_1', 'tue_1', 'wed_1', 'thu_1', 'fri_1', 'sat_1', 'sun_1'])
-e1 = emp.Employee(1, "鈴木", 21, False, ['mon_1', 'mon_2', 'mon_3', 'wed_1', 'wed_2', 'wed_3', 'fri_1', 'fri_2', 'fri_3'])
-e2 = emp.Employee(2, "佐藤", 18, False, ['sat_1', 'sat_2', 'sat_3', 'sun_1', 'sun_2', 'sun_3'])
-e3 = emp.Employee(3, "田中", 35, True, ['mon_1', 'mon_2', 'mon_3', 'tue_1', 'tue_2', 'tue_3','wed_1', 'wed_2', 'wed_3','thu_1', 'thu_2', 'thu_3','fri_1', 'fri_2', 'fri_3','sat_1', 'sat_2', 'sat_3', 'sun_1', 'sun_2', 'sun_3'])
-e4 = emp.Employee(4, "山口", 19, False, ['mon_3', 'tue_3', 'wed_3', 'thu_3', 'fri_3', 'sat_3', 'sun_3'])
-e5 = emp.Employee(5, "加藤", 43, True, ['mon_1', 'mon_2', 'mon_3', 'tue_1', 'tue_2', 'tue_3','wed_1', 'wed_2', 'wed_3','thu_1', 'thu_2', 'thu_3','fri_1', 'fri_2', 'fri_3'])
-e6 = emp.Employee(6, "川口", 25, False, ['fri_1', 'fri_2', 'fri_3', 'sat_1', 'sat_2', 'sat_3', 'sun_1', 'sun_2', 'sun_3'])
-e7 = emp.Employee(7, "野口", 22, False, ['mon_2', 'tue_2', 'wed_2', 'thu_2', 'fri_2', 'sat_2', 'sun_2'])
-e8 = emp.Employee(8, "棚橋", 18, False, ['mon_3', 'tue_3', 'wed_3', 'thu_3', 'fri_3', 'sat_3', 'sun_3'])
-e9 = emp.Employee(9, "小山", 30, True, ['thu_1', 'thu_2', 'thu_3', 'fri_1', 'fri_2', 'fri_3', 'sat_1', 'sat_2', 'sat_3', 'sun_1', 'sun_2', 'sun_3'])
+e0  = emp.Employee(1, "abe", 20, False, [
+	'mon_a', 'tue_a', 'wed_a', 'thu_a', 'fri_a', 'sat_a', 'sun_a'])
+e1  = emp.Employee(1, "chiba", 35, True, [
+	'mon_a', 'tue_b', 'wed_a', 'thu_b', 'fri_a', 'sat_b', 'sun_a'])
+e2  = emp.Employee(2, "takahashi", 25, False, [
+	'mon_a', 'mon_b', 'tue_a', 'tue_b', 'wed_a', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'fri_b', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
+e3  = emp.Employee(3, "suzuki", 32, True, [
+	'mon_a',  'tue_a', 'tue_b', 'wed_a', 'wed_b', 'thu_b', 'fri_a', 'fri_b', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
+e4  = emp.Employee(4, "hayashi", 32, True, [
+	'mon_a', 'mon_b', 'tue_a', 'tue_b', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'fri_b', 'sat_b', 'sun_a', 'sun_b'])
+e5  = emp.Employee(5, "ota", 22, False, [
+	'mon_a', 'mon_b', 'tue_a', 'tue_b', 'wed_a', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'fri_b'])
+e6  = emp.Employee(6, "kato", 21, False, [
+	'mon_a', 'mon_b', 'tue_a', 'tue_b', 'wed_a', 'wed_b', 'thu_a', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
+e7  = emp.Employee(7, "pika", 23, False, [
+	'mon_a', 'mon_b', 'tue_a', 'thu_a', 'thu_b', 'fri_a', 'fri_b', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
+e8  = emp.Employee(8, "komori", 25, False, [
+	'mon_a', 'mon_b', 'tue_a', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'sat_b', 'sun_a', 'sun_b'])
+e9  = emp.Employee(9, "kobayashi", 30, True, [
+	'tue_b', 'wed_a', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'fri_b', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
+e10 = emp.Employee(10, "tanaka", 29, False, [
+	'mon_a', 'mon_b', 'tue_a', 'tue_b', 'wed_a', 'wed_b', 'thu_a', 'thu_b', 'fri_a', 'fri_b', 'sat_a', 'sat_b', 'sun_a', 'sun_b'])
 
-EMPLOYEES = [e0, e1, e2, e3, e4, e5, e6, e7, e8, e9]
+EMPLOYEES = [e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10]
+EMPLOYEE_NUM = len(EMPLOYEES)
+DAY_VARIATION_NUM = 2
+WEEK_OF_DAY = 7
+SHIFT_ALL_NUM = WEEK_OF_DAY * DAY_VARIATION_NUM # 7 days * 2(a or b)
+PROBABIRITY = 0.5
 
 """
 These enum are evaluation
 """
-EVA_1 = 210.0
-EVA_2 = 210.0
-EVA_3 = 10.0
-EVA_4 = 21.0
+EVA_1 = 140.0
+EVA_2 = 140.0
+EVA_3 = 11.0
+EVA_4 = 14.0
 EVA_5 = 70.0
 

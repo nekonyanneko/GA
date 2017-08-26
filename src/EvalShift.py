@@ -27,7 +27,7 @@ def evalShift(individual):
 	# 管理者が1人もいないコマ数
 	no_manager_box       = len(shift.no_manager_box()) / enu.EVA_4
 
-	# 朝・昼・夜の全部にアサインされている
+	# a,bの全部にアサインされている
 	three_box_per_day    = len(shift.three_box_per_day()) / enu.EVA_5
 	
 	return (

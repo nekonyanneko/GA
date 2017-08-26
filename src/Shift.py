@@ -1,31 +1,34 @@
 # -*- coding: utf-8 -*-
+import Enum as enu
 
 class Shift(object):
 	"""
 	This class define Shift.
 	Shift instance has Employee objects by list.
 		DEFINE VARIABLE:SHIFT_BOXES
-			"The day of the week" and "_", "number"
-			ex.mon_1
+			"The day of the week" and "_", "a or b"
+			ex.mon_a
 		DEFINE VARIABLE:NEED_PEOPLE
 			Number of people required for that day
 	"""
 	SHIFT_BOXES = [
-	'mon_1', 'mon_2', 'mon_3',
-	'tue_1', 'tue_2', 'tue_3',
-	'wed_1', 'wed_2', 'wed_3',
-	'thu_1', 'thu_2', 'thu_3',
-	'fri_1', 'fri_2', 'fri_3',
-	'sat_1', 'sat_2', 'sat_3',
-	'sun_1', 'sun_2', 'sun_3']
+	'mon_a', 'mon_b',
+	'tue_a', 'tue_b',
+	'wed_a', 'wed_b',
+	'thu_a', 'thu_b',
+	'fri_a', 'fri_b',
+	'sat_a', 'sat_b',
+	'sun_a', 'sun_b'
+	]
 	NEED_PEOPLE = [
-	2,3,3,
-	2,3,3,
-	2,3,3,
-	1,2,2,
-	2,3,3,
-	2,4,4,
-	2,4,4]
+	3,2,
+	3,2,
+	3,2,
+	3,2,
+	3,2,
+	3,2,
+	3,2
+	]
 
 	def __init__(self, list):
 		"""
@@ -43,7 +46,7 @@ class Shift(object):
 		Random 
 		"""
 		sample_list = []
-		for num in range(210):
+		for num in range(140):
 			sample_list.append(random.randint(0, 1))
 		self.list = tuple(sample_list)
 
@@ -51,9 +54,9 @@ class Shift(object):
 	def slice(self):
 		sliced = []
 		start = 0
-		for num in range(10):
-			sliced.append(self.list[start:(start + 21)])
-			start = start + 21
+		for num in range(enu.EMPLOYEE_NUM):
+			sliced.append(self.list[start:(start + enu.SHIFT_ALL_NUM)])
+			start = start + enu.SHIFT_ALL_NUM
 		return tuple(sliced)
 
 	# ユーザ別にアサインコマ名を出力する
@@ -131,13 +134,13 @@ class Shift(object):
 					count += 1
 		return count
 
-	# アサインが応募コマ数の50%に満たないユーザを取得
+	# アサインが応募コマ数の指定された%に満たないユーザを取得
 	def few_work_user(self):
 		result = []
-		for user_no in range(10):
+		for user_no in range(enu.EMPLOYEE_NUM):
 			e = self.employees[user_no]
 			ratio = float(len(self.get_boxes_by_user(user_no))) / float(len(e.wills))
-			if ratio < 0.5:
+			if ratio < enu.PROBABIRITY:
 				result.append(e)
 		return result
 
@@ -158,14 +161,14 @@ class Shift(object):
 	# 1日1人3コマの日を返却
 	def three_box_per_day(self):
 		result = []
-		for user_no in range(10):
+		for user_no in range(enu.EMPLOYEE_NUM):
 			boxes = self.get_boxes_by_user(user_no)
 			wdays = []
 			for box in boxes:
 				wdays.append(box.split('_')[0])
 			wday_names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 			for wday_name in wday_names:
-				if wdays.count(wday_name) == 3:
+				if wdays.count(wday_name) == enu.DAY_VARIATION_NUM:
 					result.append(wday_name)
 		return result
 
