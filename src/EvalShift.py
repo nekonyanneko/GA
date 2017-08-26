@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import Shift as shi
-import enum as enu
+import Enum as enu
 
 def evalShift(individual):
 	"""

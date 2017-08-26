@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import Employee as emp
-import evalShift as eva
+import EvalShift as eva
 
 """
 Define Employee

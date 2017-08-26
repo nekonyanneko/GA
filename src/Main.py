@@ -7,10 +7,10 @@ from deap import creator
 from deap import tools
 from deap import cma
 
-import enum as enu
+import Enum as enu
 import Employee as emp
 import Shift as shi
-import evalShift as eva
+import EvalShift as eva
 
 """
 deap setting
