@@ -30,11 +30,15 @@ def evalShift(individual):
 	# a,bの全部にアサインされている
 	three_box_per_day    = len(shift.three_box_per_day()) / enu.EVA_5
 	
+	# 出勤日数(出勤日数は人によって異なるためget_work_day_num()の中で計算済み)
+	work_day = shift.get_work_day_num()
+	
 	return (
 		not_applicated_count,
 		people_count_sub_sum,
 		few_work_user,
 		no_manager_box,
-		three_box_per_day
+		three_box_per_day,
+		work_day
 		)
 

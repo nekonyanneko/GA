@@ -2,7 +2,9 @@
 
 class Employee(object):
 	"""This class means employees"""
-	def __init__(self, employee_id, name, age, manager, wills):
+	def __init__(
+		self, employee_id, name, days, manager, wills
+		):
 		"""
 		INPUT:
 			Same as variables.
@@ -11,8 +13,8 @@ class Employee(object):
 			Employee's Number
 		VARIABLE:name
 			Employee's name
-		VARIABLE:age
-			Employee's age
+		VARIABLE:days
+			Employee's work days
 		VARIABLE:manager
 			Is Employee manager?
 			Input variable "True" or "False"
@@ -27,7 +29,7 @@ class Employee(object):
 		"""
 		self.employee_id = employee_id
 		self.name        = name
-		self.age         = age
+		self.days        = days
 		self.manager     = manager
 		self.wills       = wills
 	def is_applicated(self, box_name):

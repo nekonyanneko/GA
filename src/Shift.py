@@ -46,7 +46,7 @@ class Shift(object):
 		Random 
 		"""
 		sample_list = []
-		for num in range(140):
+		for num in range(enu.INDIVIDUAL_NUM):
 			sample_list.append(random.randint(0, 1))
 		self.list = tuple(sample_list)
 
@@ -171,4 +171,14 @@ class Shift(object):
 				if wdays.count(wday_name) == enu.DAY_VARIATION_NUM:
 					result.append(wday_name)
 		return result
+
+	# 必須出勤日数の取得
+	def get_work_day_num(self):
+		result = []
+		work_day = []
+                for line in self.slice():
+                        work_day.append(sum(line))
+		for user_no in range(enu.EMPLOYEE_NUM):
+			result.append( work_day[user_no] / float(self.employees[user_no].days))
+		return float(sum(result)) / enu.EMPLOYEE_NUM
 

@@ -15,17 +15,25 @@ import EvalShift as eva
 """
 deap setting
 """
-creator.create("FitnessPeopleCount", base.Fitness, weights=(-10.0, -100.0, -1.0, -100.0, -10.0))
+# 評価関数のFit率の重要度(小さい値の方が重要視される)
+creator.create("FitnessPeopleCount", base.Fitness, weights=(
+	enu.EVA_WEIGHT_1,
+	enu.EVA_WEIGHT_2,
+	enu.EVA_WEIGHT_3,
+	enu.EVA_WEIGHT_4,
+	enu.EVA_WEIGHT_5,
+	enu.EVA_WEIGHT_6
+	))
 creator.create("Individual", list, fitness=creator.FitnessPeopleCount)
 toolbox = base.Toolbox()
 toolbox.register("map", futures.map)
 toolbox.register("attr_bool", random.randint, 0, 1)
-toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, 210)
+toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, enu.INDIVIDUAL_NUM)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("evaluate", eva.evalShift)
 # 交叉関数を定義(二点交叉)
 toolbox.register("mate", tools.cxTwoPoint)
-# 変異関数を定義(ビット反転、変異隔離が5%)
+# 変異関数を定義(ビット反転、変異確率が5%)
 toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
 # 選択関数を定義(トーナメント選択、tournsizeはトーナメントの数)
 toolbox.register("select", tools.selTournament, tournsize=3)
@@ -33,7 +41,8 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 if __name__ == '__main__':
 	# 初期集団を生成する
 	pop = toolbox.population(n=300)
-	CXPB, MUTPB, NGEN = 0.6, 0.5, 500 # 交差確率、突然変異確率、進化計算のループ回数
+	# 交差確率、突然変異確>率、進化計算のループ回数
+	CXPB, MUTPB, NGEN = enu.CROSS_PROBABIRTY, enu.MULTATION_PROBABIRTY, enu.LOOP_NUM
 
 	print("進化開始")
 
@@ -87,19 +96,19 @@ if __name__ == '__main__':
 		# すべての個体の適合度を配列にする
 		index = 1
 		for v in ind.fitness.values:
-		  fits = [v for ind in pop]
+			fits = [v for ind in pop]
+			
+			length = len(pop)
+			mean = sum(fits) / length
+			sum2 = sum(x*x for x in fits)
+			std = abs(sum2 / length - mean**2)**0.5
 
-		  length = len(pop)
-		  mean = sum(fits) / length
-		  sum2 = sum(x*x for x in fits)
-		  std = abs(sum2 / length - mean**2)**0.5
-
-		  print("* パラメータ%d") % index
-		  print("  Min %s" % min(fits))
-		  print("  Max %s" % max(fits))
-		  print("  Avg %s" % mean)
-		  print("  Std %s" % std)
-		  index += 1
+			print("* パラメータ%d") % index
+			print("  Min %s" % min(fits))
+			print("  Max %s" % max(fits))
+			print("  Avg %s" % mean)
+			print("  Std %s" % std)
+			index += 1
 
 	print("-- 進化終了 --")
 
