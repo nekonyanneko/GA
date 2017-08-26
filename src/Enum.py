@@ -38,9 +38,9 @@ PROBABIRITY = 0.5
 """
 These enum are evaluation
 """
-EVA_1 = 140.0
-EVA_2 = 140.0
-EVA_3 = 11.0
-EVA_4 = 14.0
-EVA_5 = 70.0
+EVA_1 = float(EMPLOYEE_NUM * WEEK_OF_DAY)
+EVA_2 = float(EMPLOYEE_NUM * WEEK_OF_DAY)
+EVA_3 = float(EMPLOYEE_NUM)
+EVA_4 = float(WEEK_OF_DAY * DAY_VARIATION_NUM)
+EVA_5 = float(EMPLOYEE_NUM * WEEK_OF_DAY)
 
