@@ -22,7 +22,17 @@ creator.create("FitnessPeopleCount", base.Fitness, weights=(
 	enu.EVA_WEIGHT_3,
 	enu.EVA_WEIGHT_4,
 	enu.EVA_WEIGHT_5,
-	enu.EVA_WEIGHT_6
+	enu.EVA_WEIGHT_6,
+        enu.EVA_WEIGHT_7,
+        enu.EVA_WEIGHT_8,
+        enu.EVA_WEIGHT_9,
+        enu.EVA_WEIGHT_10,
+        enu.EVA_WEIGHT_11,
+        enu.EVA_WEIGHT_12,
+        enu.EVA_WEIGHT_13,
+        enu.EVA_WEIGHT_14,
+        enu.EVA_WEIGHT_15,
+        enu.EVA_WEIGHT_16
 	))
 creator.create("Individual", list, fitness=creator.FitnessPeopleCount)
 toolbox = base.Toolbox()
@@ -36,11 +46,11 @@ toolbox.register("mate", tools.cxTwoPoint)
 # 変異関数を定義(ビット反転、変異確率が5%)
 toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
 # 選択関数を定義(トーナメント選択、tournsizeはトーナメントの数)
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("select", tools.selTournament, tournsize=enu.TOURN_SIZE)
 
 if __name__ == '__main__':
 	# 初期集団を生成する
-	pop = toolbox.population(n=300)
+	pop = toolbox.population(n=enu.NUM)
 	# 交差確率、突然変異確>率、進化計算のループ回数
 	CXPB, MUTPB, NGEN = enu.CROSS_PROBABIRTY, enu.MULTATION_PROBABIRTY, enu.LOOP_NUM
 
@@ -58,6 +68,7 @@ if __name__ == '__main__':
 	 # 進化計算開始
 	for g in range(NGEN):
 		print("-- %i 世代 --" % g)
+		print("CXPB:%lf MUTPB:%lf" % (CXPB, MUTPB))
 
 		# 選択
 		# 次世代の個体群を選択
@@ -87,7 +98,11 @@ if __name__ == '__main__':
 		fitnesses = map(toolbox.evaluate, invalid_ind)
 		for ind, fit in zip(invalid_ind, fitnesses):
 			ind.fitness.values = fit
-
+		
+		# 収束するように確率を調整
+		CXPB = CXPB * enu.CROSS_LOSS
+		MUTPB = MUTPB * enu.MULTATION_LOSS
+		
 		print("  %i の個体を評価" % len(invalid_ind))
 
 		# 次世代群をoffspringにする

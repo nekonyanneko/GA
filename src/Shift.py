@@ -123,14 +123,14 @@ class Shift(object):
 			index += 1
 		return result
 
-	# 応募していないコマにアサインされている件数を取得する
+	# 休暇希望のコマにアサインされている件数を取得する
 	def not_applicated_assign(self):
 		count = 0
 		for box_name in self.SHIFT_BOXES:
 			user_nos = self.get_user_nos_by_box_name(box_name)
 			for user_no in user_nos:
 				e = self.employees[user_no]
-				if not e.is_applicated(box_name):
+				if e.is_applicated(box_name):
 					count += 1
 		return count
 
@@ -139,7 +139,10 @@ class Shift(object):
 		result = []
 		for user_no in range(enu.EMPLOYEE_NUM):
 			e = self.employees[user_no]
-			ratio = float(len(self.get_boxes_by_user(user_no))) / float(len(e.wills))
+			if len(e.wills) == 0:
+				ratio = 1.0
+			else:
+				ratio = float(len(self.get_boxes_by_user(user_no))) / float(len(e.wills))
 			if ratio < enu.PROBABIRITY:
 				result.append(e)
 		return result
@@ -180,5 +183,6 @@ class Shift(object):
                         work_day.append(sum(line))
 		for user_no in range(enu.EMPLOYEE_NUM):
 			result.append( work_day[user_no] / float(self.employees[user_no].days))
-		return float(sum(result)) / enu.EMPLOYEE_NUM
+		return result
+		#return float(sum(result)) / enu.EMPLOYEE_NUM
 

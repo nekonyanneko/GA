@@ -39,6 +39,16 @@ def evalShift(individual):
 		few_work_user,
 		no_manager_box,
 		three_box_per_day,
-		work_day
+		work_day[0],
+		work_day[1],
+                work_day[2],
+                work_day[3],
+                work_day[4],
+                work_day[5],
+                work_day[6],
+                work_day[7],
+                work_day[8],
+                work_day[9],
+                work_day[10]
 		)
 
