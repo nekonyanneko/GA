@@ -38,7 +38,7 @@ if __name__ == '__main__':
 	print("進化開始")
 
 	# 初期集団の個体を評価する
-	print "初期集団の個体数:", len(pop)
+	print ("初期集団の個体数:%i" % len(pop))
 	fitnesses = list(map(toolbox.evaluate, pop))
 	for ind, fit in zip(pop, fitnesses):  # zipは複数変数の同時ループ
 		# 適合性をセットする
@@ -106,6 +106,8 @@ if __name__ == '__main__':
 	best_ind = tools.selBest(pop, 1)[0]
 	print("最も優れていた個体: %s, %s" % (best_ind, best_ind.fitness.values))
 	shift = shi.Shift(best_ind)
+
+	print("-- 出力 --")
 	shift.print_csv()
-	shift.print_tsv()
+	#shift.print_tsv()
 
