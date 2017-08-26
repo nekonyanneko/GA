@@ -4,6 +4,9 @@ class Employee(object):
 	"""This class means employees"""
 	def __init__(self, employee_id, name, age, manager, wills):
 		"""
+		INPUT:
+			Same as variables.
+		
 		VARIABLE:employee_id
 			Employee's Number
 		VARIABLE:name
@@ -19,7 +22,8 @@ class Employee(object):
 			The format of the list elements is as follows
 			-> DEFINE VARIABLE of Shift class
 
-		RETURN:noting
+		RETURN:
+			noting
 		"""
 		self.employee_id = employee_id
 		self.name        = name
@@ -28,6 +32,12 @@ class Employee(object):
 		self.wills       = wills
 	def is_applicated(self, box_name):
 		"""
+		This method is answer that employee preferred shift satisfy.
+		Input:
+			Whether an box_name element exists in Employee's valiable of wills.
+
+		RETURN:
+			Employee's variable of wills
 		"""
 		return (box_name in self.wills)
 

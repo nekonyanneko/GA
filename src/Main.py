@@ -25,9 +25,9 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("evaluate", eva.evalShift)
 # 交叉関数を定義(二点交叉)
 toolbox.register("mate", tools.cxTwoPoint)
-# 変異関数を定義(ビット反転、変異隔離が5%ということ?)
+# 変異関数を定義(ビット反転、変異隔離が5%)
 toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
-# 選択関数を定義(トーナメント選択、tournsizeはトーナメントの数？)
+# 選択関数を定義(トーナメント選択、tournsizeはトーナメントの数)
 toolbox.register("select", tools.selTournament, tournsize=3)
 
 if __name__ == '__main__':
