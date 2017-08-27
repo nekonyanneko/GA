@@ -16,6 +16,8 @@ import EvalShift as eva
 deap setting
 """
 # 評価関数のFit率の重要度(小さい値の方が重要視される)
+creator.create("FitnessPeopleCount", base.Fitness, weights=(-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0))
+"""
 creator.create("FitnessPeopleCount", base.Fitness, weights=(
 	enu.EVA_WEIGHT_1,
 	enu.EVA_WEIGHT_2,
@@ -34,6 +36,7 @@ creator.create("FitnessPeopleCount", base.Fitness, weights=(
         enu.EVA_WEIGHT_15,
         enu.EVA_WEIGHT_16
 	))
+"""
 creator.create("Individual", list, fitness=creator.FitnessPeopleCount)
 toolbox = base.Toolbox()
 toolbox.register("map", futures.map)
